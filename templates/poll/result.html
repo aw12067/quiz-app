@@ -1,0 +1,28 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block main %}
+<div class="row ">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="margin-top:20px;margin-bottom: 20px;">Quiz Result</h3>
+            </div>
+            {% for poll in polls %}
+            <div class="panel-body jumbotron">
+                <h3>{{ poll.question }}</h3>
+
+                <ul class="list-group">
+                    <li class="list-group-item">Selected Option:  <strong>{{poll.answer}}</strong> </li>
+                </ul>
+
+                <div class="panel-footer">
+                    Correct Option &mdash; <strong>{{ poll.correct_option }}</strong>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

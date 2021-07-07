@@ -1,0 +1,62 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block main %}
+
+
+<div class="panel-heading">
+    <h3 style="text-align: center;padding-top: 20px;">QUIZ</h3>
+</div>
+
+<div class="row jumbotron">
+    <div class="col-lg-8 col-lg-offset-2" >
+        <div class="panel panel-default">
+                
+            <ul class="list-group">
+                {% for poll in polls %}
+                <li class="list-group-item">
+                    <strong>{{ poll.question }}</strong>
+                    <div class="row">
+                    <div class="col-lg-12">
+                        <hr>                            
+                            <form action="{% url 'check' poll.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="poll" value="option1" required>
+                                        {{ poll.option_one }}
+                                    </label> &nbsp;
+                                    <label>
+                                        <input type="radio" name="poll" value="option2">
+                                        {{ poll.option_two }}
+                                    </label> &nbsp;
+                                    <label>
+                                        <input type="radio" name="poll" value="option3">
+                                        {{ poll.option_three }}
+                                    </label> &nbsp;
+                                    <label>
+                                        <input type="radio" name="poll" value="option4">
+                                        {{ poll.option_four }}
+                                    </label> &nbsp;
+                                </div>
+                            </div>
+                            
+                            <hr />
+
+                            <button type="submit" class="btn btn-info">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
